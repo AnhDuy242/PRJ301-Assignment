@@ -29,7 +29,7 @@ public class AttendanceController extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if a servlet-spec ific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +66,7 @@ public class AttendanceController extends HttpServlet {
         SessionDBContext sesDB = new SessionDBContext();
         Session ses = sesDB.get(sesid);
         request.setAttribute("ses", ses);
-        request.getRequestDispatcher("../view/lecturer/att.jsp").forward(request, response);
+        request.getRequestDispatcher("/View/Attendance.jsp").forward(request, response);
     }
 
     /**
@@ -80,8 +80,8 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Session ses = null;
-//        Session ses = new Session();
+       
+      Session ses = new Session();
         ses.setId(Integer.parseInt(request.getParameter("sesid")));
         String[] stdids = request.getParameterValues("stdid");
         for (String stdid : stdids) {
@@ -95,7 +95,7 @@ public class AttendanceController extends HttpServlet {
         }
         SessionDBContext db = new SessionDBContext();
         db.update(ses);
-        response.sendRedirect("takeatt?id="+ses.getId());
+        response.sendRedirect("AttendanceController?id="+ses.getId());
     }
 
     /**
