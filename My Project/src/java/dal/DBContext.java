@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author ngoan
+ * @param <T>
  */
 public abstract class DBContext<T> {
      protected Connection connection;
@@ -37,7 +38,7 @@ public abstract class DBContext<T> {
     public abstract T get(int id); // SELECT * FROM WHERE id = 
     public abstract ArrayList<T> list(); //override SELECT * FROM
 }
-
+   
 class Check {
     public static void main(String[] args) {
         DBContext db = new DBContext() {
