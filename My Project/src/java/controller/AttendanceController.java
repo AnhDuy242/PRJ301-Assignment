@@ -4,12 +4,17 @@
  */
 package controller;
 
+
+import dal.SessionDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import model.Attandance;
+import model.Session;
+import model.Student;
 
 
 /**
@@ -75,6 +80,7 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Session ses = null;
 //        Session ses = new Session();
         ses.setId(Integer.parseInt(request.getParameter("sesid")));
         String[] stdids = request.getParameterValues("stdid");
