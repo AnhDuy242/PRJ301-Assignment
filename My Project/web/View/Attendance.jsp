@@ -18,7 +18,7 @@
         Room: ${requestScope.ses.room.name} <br/>
         Date: ${requestScope.ses.date} - ${requestScope.ses.slot.description}<br/>
         Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
-        <form action="takeatt" method="POST">
+        <form action="AttendanceController" method="POST">
             <input type="hidden" name="sesid" value="${param.id}"/>
             <table border="1px">
                 <tr>
