@@ -3,26 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.auth;
 
-import dal.SessionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Attandance;
-import model.Session;
-import model.Student;
 
 /**
  *
  * @author sonnt
  */
-public class AttendanceController extends HttpServlet {
+public class LogoutController extends HttpServlet {
    
-    
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        request.getSession().setAttribute("account", null);
+        response.getWriter().println("logout successful!");
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -35,11 +42,7 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int sesid = Integer.parseInt(request.getParameter("id"));
-        SessionDBContext sesDB = new SessionDBContext();
-        Session ses = sesDB.get(sesid);
-        request.setAttribute("ses", ses);
-        request.getRequestDispatcher("/View/Lecturer/Attendance.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -52,21 +55,7 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        Session ses = new Session();
-        ses.setId(Integer.parseInt(request.getParameter("sesid")));
-        String[] stdids = request.getParameterValues("stdid");
-        for (String stdid : stdids) {
-            Attandance a =new Attandance();
-            Student s = new Student();
-            a.setStudent(s);
-            a.setDescription(request.getParameter("description"+stdid));
-            a.setPresent(request.getParameter("present"+stdid).equals("present"));
-            s.setId(Integer.parseInt(stdid));
-            ses.getAtts().add(a);
-        }
-        SessionDBContext db = new SessionDBContext();
-        db.update(ses);
-        response.sendRedirect("AttendanceController?id="+ses.getId());
+        processRequest(request, response);
     }
 
     /** 

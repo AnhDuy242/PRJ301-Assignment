@@ -3,24 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.auth;
 
-import dal.SessionDBContext;
+import dal.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Attandance;
-import model.Session;
-import model.Student;
+import model.Account;
 
-/**
- *
- * @author sonnt
- */
-public class AttendanceController extends HttpServlet {
+public class LoginController extends HttpServlet {
    
     
 
@@ -35,11 +29,7 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int sesid = Integer.parseInt(request.getParameter("id"));
-        SessionDBContext sesDB = new SessionDBContext();
-        Session ses = sesDB.get(sesid);
-        request.setAttribute("ses", ses);
-        request.getRequestDispatcher("/View/Lecturer/Attendance.jsp").forward(request, response);
+        request.getRequestDispatcher("View/auth/login.jsp").forward(request, response);
     } 
 
     /** 
@@ -52,21 +42,20 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        Session ses = new Session();
-        ses.setId(Integer.parseInt(request.getParameter("sesid")));
-        String[] stdids = request.getParameterValues("stdid");
-        for (String stdid : stdids) {
-            Attandance a =new Attandance();
-            Student s = new Student();
-            a.setStudent(s);
-            a.setDescription(request.getParameter("description"+stdid));
-            a.setPresent(request.getParameter("present"+stdid).equals("present"));
-            s.setId(Integer.parseInt(stdid));
-            ses.getAtts().add(a);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        AccountDBContext db = new AccountDBContext();
+        Account account = db.get(username, password);
+        if(account!=null)
+        {
+            request.getSession().setAttribute("account", account);
+//            response.getWriter().println("login successful!");
+            response.sendRedirect(request.getContextPath()+"/TimetableController");
         }
-        SessionDBContext db = new SessionDBContext();
-        db.update(ses);
-        response.sendRedirect("AttendanceController?id="+ses.getId());
+        else
+        {
+            response.getWriter().println("login failed!");
+        }
     }
 
     /** 

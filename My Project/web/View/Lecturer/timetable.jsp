@@ -15,7 +15,7 @@
     <body>
         
         Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/>
-        <form action="timetable" method="GET">
+        <form action="TimetableController" method="GET">
             <input type="hidden" name="lid" value="${param.lid}"/>
             From: <input type="date" name="from" value="${requestScope.from}"/>
             To: <input type="date" name="to" value="${requestScope.to}"/>

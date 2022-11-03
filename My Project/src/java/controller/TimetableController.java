@@ -71,7 +71,7 @@ public class TimetableController extends HttpServlet {
         Lecturer lecturer = lecDB.get(lid);
         request.setAttribute("lecturer", lecturer);
         
-        request.getRequestDispatcher("/view/Lecturer/timetable.jsp").forward(request, response);
+        request.getRequestDispatcher("/View/Lecturer/timetable.jsp").forward(request, response);
         
     } 
 
