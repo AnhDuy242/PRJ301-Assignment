@@ -4,7 +4,6 @@
  */
 package controller;
 
-
 import dal.SessionDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,62 +15,23 @@ import model.Attandance;
 import model.Session;
 import model.Student;
 
-
 /**
  *
  * @author ngoan
  */
-public class AttendanceController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-spec ific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AttendanceController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AttendanceController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+    public class AttendanceController extends HttpServlet {
+  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        processRequest(request, response);
+    throws ServletException, IOException {
         int sesid = Integer.parseInt(request.getParameter("id"));
         SessionDBContext sesDB = new SessionDBContext();
         Session ses = sesDB.get(sesid);
         request.setAttribute("ses", ses);
-        request.getRequestDispatcher("/View/Attendance.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("/View/Lecturer/Attendance.jsp").forward(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -79,9 +39,8 @@ public class AttendanceController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
-      Session ses = new Session();
+    throws ServletException, IOException {
+        Session ses = new Session();
         ses.setId(Integer.parseInt(request.getParameter("sesid")));
         String[] stdids = request.getParameterValues("stdid");
         for (String stdid : stdids) {
@@ -98,9 +57,8 @@ public class AttendanceController extends HttpServlet {
         response.sendRedirect("AttendanceController?id="+ses.getId());
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

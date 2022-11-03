@@ -93,6 +93,14 @@ public class Session {
     public void setAttanded(boolean attanded) {
         this.attanded = attanded;
     }
+
+    public void setTimeslot(TimeSlot t) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setAttandated(boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

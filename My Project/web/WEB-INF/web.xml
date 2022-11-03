@@ -5,24 +5,16 @@
         <servlet-class>controller.AttendanceController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TimetableController</servlet-name>
-        <servlet-class>controller.TimetableController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteController</servlet-name>
-        <servlet-class>controller.DeleteController</servlet-class>
+        <servlet-name>TimeTableController</servlet-name>
+        <servlet-class>controller.TimeTableController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>
         <url-pattern>/AttendanceController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TimetableController</servlet-name>
+        <servlet-name>TimeTableController</servlet-name>
         <url-pattern>/TimetableController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteController</servlet-name>
-        <url-pattern>/DeleteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

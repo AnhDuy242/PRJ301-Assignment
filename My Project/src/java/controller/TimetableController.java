@@ -4,6 +4,9 @@
  */
 package controller;
 
+import dal.LecturerDBContext;
+import dal.SessionDBContext;
+import dal.TimeSlotDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,24 +15,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import model.Lecturer;
+import model.Session;
+import model.TimeSlot;
+import util.DateTimeHelper;
 
 /**
  *
  * @author ngoan
  */
 public class TimetableController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         int lid = Integer.parseInt(request.getParameter("lid"));
         String raw_from = request.getParameter("from");
         String raw_to = request.getParameter("to");
@@ -66,17 +71,13 @@ public class TimetableController extends HttpServlet {
         Lecturer lecturer = lecDB.get(lid);
         request.setAttribute("lecturer", lecturer);
         
-        request.getRequestDispatcher("../view/lecturer/timetable.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/Lecturer/timetable.jsp").forward(request, response);
         
     } 
-}
-
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -84,14 +85,12 @@ public class TimetableController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
-    }
+    throws ServletException, IOException {
+        processRequest(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -99,18 +98,11 @@ public class TimetableController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    
+
 
 }
