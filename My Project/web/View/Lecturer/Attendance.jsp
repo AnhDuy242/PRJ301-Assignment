@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <a href="TimetableController">Home</a><br/>
         Take attendance for Group: ${requestScope.ses.group.name} <br/>
         Subject: ${requestScope.ses.group.subject.name} <br/>
         Room: ${requestScope.ses.room.name} <br/>

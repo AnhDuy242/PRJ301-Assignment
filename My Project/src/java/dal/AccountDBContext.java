@@ -22,7 +22,7 @@ public class AccountDBContext extends DBContext<Account> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT username,displayname FROM Account WHERE\n"
+            String sql = "SELECT username,lid FROM Account WHERE\n"
                     + "username = ? AND [password] = ?";
              stm = connection.prepareStatement(sql);
              stm.setString(1, username);
@@ -32,7 +32,7 @@ public class AccountDBContext extends DBContext<Account> {
             {
                 Account account = new Account();
                 account.setUsername(username);
-                account.setDisplayname(rs.getString("displayname"));
+                account.setLid(rs.getInt("lid"));
                 return account;
             }
         } catch (SQLException ex) {

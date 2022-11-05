@@ -11,7 +11,7 @@ package model;
 public class Account {
     private String username;
     private String password;
-    private String displayname;
+    private int lid;
 
     public String getUsername() {
         return username;
@@ -29,12 +29,13 @@ public class Account {
         this.password = password;
     }
 
-    public String getDisplayname() {
-        return displayname;
+    public int getLid() {
+        return lid;
     }
 
-    public void setDisplayname(String displayname) {
-        this.displayname = displayname;
+    public void setLid(int lid) {
+        this.lid = lid;
     }
+    
     
 }

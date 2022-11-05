@@ -209,7 +209,7 @@ public class SessionDBContext extends DBContext<Session> {
                 session.setId(rs.getInt("sesid"));
                 session.setDate(rs.getDate("date"));
                 session.setIndex(rs.getInt("index"));
-                session.setAttandated(rs.getBoolean("attanded"));
+                session.setAttanded(rs.getBoolean("attanded"));
                 
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
@@ -229,7 +229,7 @@ public class SessionDBContext extends DBContext<Session> {
                 
                 t.setId(rs.getInt("tid"));
                 t.setDescription(rs.getString("description"));
-                session.setTimeslot(t);
+                session.setSlot(t);
                 
                 sessions.add(session);
             }
