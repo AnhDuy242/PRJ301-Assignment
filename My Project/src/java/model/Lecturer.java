@@ -17,6 +17,9 @@ public class Lecturer {
     private ArrayList<Session> sessions = new ArrayList<>();
 
     public int getId() {
+        for (Group group : groups) {
+            
+        }
         return id;
     }
 
