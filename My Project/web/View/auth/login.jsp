@@ -26,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td style="padding-left: 200px;">
-                                FAP mobile app( myFap ) is ready at
+                                <strong>FAP mobile app( myFap ) is ready at</strong>
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +47,7 @@
             <br/>
             <br/>
             <div style="border: 1px solid">
-                <p style="background-color: orange; color: white; padding: 10px;">
+                <p style="background-color: #eb9316; color: white; padding: 10px;">
                     <br/>
                 <form action="login" method="POST">
                 
@@ -62,7 +62,7 @@
             <br/>
             <div class="footer" style="padding: 10px; border-top: 1px;">
                 <p style="padding-left: 500px">
-                    @Powered by 
+                    <strong>@Powered by </strong>
                     <a href="http://fpt.edu.vn/" style="font-size: 15px">FPT University</a>|
                     <a href="http://cms.fpt.edu.vn/" style="font-size: 15px">CMS</a>|
                     <a href="http://library.fpt.edu.vn/" style="font-size: 15px">Library</a>|
